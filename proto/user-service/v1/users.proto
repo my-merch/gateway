@@ -4,7 +4,7 @@ package UserService;
 
 option go_package = "github.com/my-merch/gateway/stubs/user-service/v1";
 
-import "github.com/my-merch/gateway/annotations.proto";
+import "github.com/my-merch/gateway/proto/user-service/v1/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service UserService {
