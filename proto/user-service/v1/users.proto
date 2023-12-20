@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package UserService;
+
+option go_package = "github.com/my-merch/gateway/stubs/user-service/v1";
+
+import "github.com/my-merch/gateway/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse){
+    option (google.api.http) = {
+      get: "/api/user/v1/{id}"
+    };
+  }
+}
+
+message GetUserRequest{
+  uint32 id=1;
+}
+
+message GetUserResponse{
+  User user=1;
+}
+
+message User{
+  uint32 id = 1;
+  string name = 2;
+  string email = 3;
+}
