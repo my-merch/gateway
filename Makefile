@@ -1,5 +1,12 @@
 generate:
-	protoc -Iproto --go_out=. --go_opt=module=github.com/KhetwalDevesh/project-totality --go-grpc_out=. --go-grpc_opt=module=github.com/KhetwalDevesh/project-totality proto/users.proto
+	protoc -I ./proto \
+      --go_out=paths=import:./stubs \
+      --go_opt=paths=source_relative \
+      --go-grpc_out=paths=import:./stubs \
+      --go-grpc_opt=paths=source_relative \
+      --grpc-gateway_out=paths=import:./stubs \
+      --grpc-gateway_opt=paths=source_relative \
+      ./proto/user-service/v1/users.proto
 
 test-generate1:
 	find proto/*/v1 -name "*.proto" -exec \
@@ -18,3 +25,4 @@ test-generate2:
 test-generate3:
 	protoc -Iproto --go_out=stubs --go_opt=module=github.com/my-merch/gateway \
       --go-grpc_out=stubs --go-grpc_opt=module=github.com/my-merch/gateway proto/users.proto
+
